@@ -1,0 +1,86 @@
+# Astiron Spectra Configuration
+
+runtime:
+  threads: 8
+  gpu: true
+  memory_limit_gb: 8
+  log_level: INFO
+
+tiling:
+  size: 512
+  overlap: 64
+  min_valid_pixels: 0.8
+
+preprocess:
+  coregistration: phase_corr      # none|phase_corr
+  resample_to: EPSG:4326
+  radiometric_norm: zscore        # zscore|histmatch|none
+  hsi:
+    suppress_natural: true
+    water_mask: false
+    bad_bands: [0, 1, 2, -3, -2, -1]  # typically noisy edge bands
+  tir:
+    denoise: bilateral
+    video_fps: 2
+    temporal_filter: median
+
+detect:
+  hsi:
+    method: hybrid                # rx|ae|transformer|hybrid
+    rx_shrinkage: ledoit_wolf
+    ae:
+      bottleneck: 8
+      epochs: 50
+      lr: 1e-3
+      batch_size: 32
+    transformer:
+      window: 7
+      depth: 4
+      heads: 4
+      embed_dim: 64
+    threshold: otsu               # otsu|percentile|adaptive
+    percentile_thresh: 95
+  tir:
+    method: cnn_on_patch          # cnn_on_patch|ae
+    threshold: adaptive
+    hot_spot_sigma: 2.0
+    patch_size: 64
+    stride: 32
+
+characterize:
+  hsi_library: configs/spectral_libraries/usgs_minerals_subset.csv
+  sim_metric: sid                 # sid|sam|cosine
+  top_k: 3
+  min_confidence: 0.1
+  tir_emissivity_lib: configs/emissivity_lib.csv
+  temperature_threshold: 5.0      # Kelvin above background
+
+fusion:
+  mode: late_score                # early|mid|late_score
+  weights:
+    hsi: 0.6
+    tir: 0.4
+  confidence_threshold: 0.5
+
+postprocess:
+  clean:
+    open_px: 3
+    close_px: 5
+    min_poly_area_m2: 50
+  simplify_tol_m: 0.5
+  crs_out: EPSG:4326
+  export_formats: [geojson, shapefile, geotiff]
+
+evaluation:
+  metrics: [f1, roc_auc, pr_auc, precision, recall]
+  iou_threshold: 0.5
+
+# Output file naming
+output:
+  mask_suffix: "_anomaly_mask"
+  heatmap_suffix: "_anomaly_heatmap"
+  polygons_suffix: "_anomaly_polygons"
+  characterization_suffix: "_characterization"
+  fusion_suffix: "_fusion_mask"
+  manifest_suffix: "_manifest"
+  metrics_suffix: "_metrics"
