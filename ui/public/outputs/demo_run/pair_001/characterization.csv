@@ -1,0 +1,3 @@
+anomaly_id,material,confidence,category,area_m2
+1,Quartz,0.85,silicate,2500
+2,Hematite,0.72,oxide,3600

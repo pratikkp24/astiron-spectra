@@ -1,0 +1,138 @@
+version: '3.8'
+
+services:
+  preprocess:
+    build:
+      context: ./infer/preprocess
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+      - ./configs:/app/configs:ro
+      - ./common:/app/common:ro
+    environment:
+      - RUN_ID=${RUN_ID:-demo}
+      - PYTHONPATH=/app/common
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=1G
+    mem_limit: 4g
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  detect_hsi:
+    build:
+      context: ./infer/detect_hsi
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+      - ./configs:/app/configs:ro
+      - ./common:/app/common:ro
+    environment:
+      - RUN_ID=${RUN_ID:-demo}
+      - PYTHONPATH=/app/common
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=2G
+    mem_limit: 6g
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  detect_tir:
+    build:
+      context: ./infer/detect_tir
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+      - ./configs:/app/configs:ro
+      - ./common:/app/common:ro
+    environment:
+      - RUN_ID=${RUN_ID:-demo}
+      - PYTHONPATH=/app/common
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=2G
+    mem_limit: 6g
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  characterize:
+    build:
+      context: ./infer/characterize
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+      - ./configs:/app/configs:ro
+      - ./common:/app/common:ro
+    environment:
+      - RUN_ID=${RUN_ID:-demo}
+      - PYTHONPATH=/app/common
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=1G
+    mem_limit: 2g
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  fuse:
+    build:
+      context: ./infer/fuse
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+      - ./configs:/app/configs:ro
+      - ./common:/app/common:ro
+    environment:
+      - RUN_ID=${RUN_ID:-demo}
+      - PYTHONPATH=/app/common
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=1G
+    mem_limit: 2g
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+  postprocess:
+    build:
+      context: ./infer/postprocess
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data:ro
+      - ./output:/app/output
+      - ./configs:/app/configs:ro
+      - ./common:/app/common:ro
+    environment:
+      - RUN_ID=${RUN_ID:-demo}
+      - PYTHONPATH=/app/common
+    network_mode: "none"
+    read_only: true
+    tmpfs:
+      - /tmp:size=1G
+    mem_limit: 2g
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  default:
+    driver: none
