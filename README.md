@@ -2,6 +2,8 @@
 
 **Spectral-Spatial Change Intelligence**
 
+> Verification test - confirming repository access and workflow functionality.
+
 AI/ML-based Spectral-Spatial Anomaly Detection in Hyperspectral & Thermal (IR) data for PS-11.
 
 ## Features
