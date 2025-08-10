@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "run_id": "demo_run",
+      "timestamp": "2024-12-01T14:30:22Z",
+      "pairs": [
+        {
+          "pair_id": "pair_001",
+          "sensor_types": [
+            "HSI",
+            "TIR"
+          ],
+          "has_fusion": true,
+          "anomaly_count": 2,
+          "total_area_m2": 6100
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.48,
+              37.52
+            ],
+            [
+              -122.47,
+              37.52
+            ],
+            [
+              -122.47,
+              37.53
+            ],
+            [
+              -122.48,
+              37.53
+            ],
+            [
+              -122.48,
+              37.52
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "anomaly_id": 1,
+        "area_m2": 2500,
+        "confidence": 0.85,
+        "material": "Unknown"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -122.46,
+              37.54
+            ],
+            [
+              -122.45,
+              37.54
+            ],
+            [
+              -122.45,
+              37.55
+            ],
+            [
+              -122.46,
+              37.55
+            ],
+            [
+              -122.46,
+              37.54
+            ]
+          ]
+        ]
+      },
+      "properties": {
+        "anomaly_id": 2,
+        "area_m2": 3600,
+        "confidence": 0.72,
+        "material": "Mineral"
+      }
+    }
+  ]
+}

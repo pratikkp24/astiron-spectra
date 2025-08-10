@@ -1,0 +1,27 @@
+{
+  "pair_id": "demo_pair_001",
+  "run_id": "demo_run",
+  "timestamp": "2024-12-01T14:30:22Z",
+  "processing_time_seconds": 45.2,
+  "algorithms": {
+    "hsi_detector": "hybrid_rx_ae",
+    "tir_detector": "cnn_patch",
+    "fusion": "late_score"
+  },
+  "thresholds": {
+    "hsi": 0.75,
+    "tir": 0.68,
+    "fusion": 0.71
+  },
+  "statistics": {
+    "total_anomalies": 2,
+    "total_area_m2": 6100,
+    "coverage_percent": 0.24
+  },
+  "files": {
+    "anomaly_mask": "anomaly_mask.tif",
+    "anomaly_heatmap": "anomaly_heatmap.tif",
+    "anomaly_polygons": "anomaly_polygons.geojson",
+    "characterization": "characterization.csv"
+  }
+}

@@ -1,0 +1,5 @@
+pair_id,sensor_type,path,type,date,notes
+hsi_aviris_sample,SPECTRAL,data/hsi/aviris_sample/scene.tif,HSI,2024-06-01,Synthetic AVIRIS-like hyperspectral sample
+tir_flame3,THERMAL,data/tir/flame3_sample/thermal.tif,TIR,2024-06-01,Synthetic FLAME-3-like thermal sample
+hsi_pavia_university,SPECTRAL,data/hsi/pavia_university/scene.tif,HSI,2024-06-02,Synthetic Pavia University-like sample
+tir_kaist,THERMAL,data/tir/kaist_sample/thermal.tif,TIR,2024-06-02,Synthetic KAIST-like thermal sample
